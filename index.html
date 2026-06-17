@@ -1,41 +1,91 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>3D Model Viewer</title>
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: #111; color: #fff; font-family: -apple-system, sans-serif; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-    model-viewer { width: 100vw; height: 90vh; background-color: #1a1a1a; }
-    .footer { padding: 12px; font-size: 13px; color: #888; text-align: center; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D AR Просмотр</title>
+    
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+    
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f6f9;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .card {
+            width: 95%;
+            max-width: 500px;
+            height: 85vh;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        header {
+            background: #1e293b;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        model-viewer {
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+        }
+        #ar-button {
+            background-color: #2563eb;
+            background-image: url('https://modelviewer.dev/assets/ic_view_in_ar_new_googblue_48dp.png');
+            background-repeat: no-repeat;
+            background-size: 20px 20px;
+            background-position: 14px 50%;
+            color: white;
+            border-radius: 12px;
+            border: none;
+            padding: 12px 20px 12px 42px;
+            font-size: 14px;
+            font-weight: 600;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-  <model-viewer
-    src="https://drive.google.com/uc?export=download&confirm=t&id=1rrgizc4hACtr-5y6kvFy1ZZmdaEhPmNy"
-    ar
-    ar-modes="webxr scene-viewer quick-look"
-    camera-controls
-    auto-rotate
-    shadow-intensity="1"
-    alt="3D Model">
-    <button slot="ar-button" style="
-      position: absolute;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #fff;
-      color: #000;
-      border: none;
-      padding: 14px 32px;
-      border-radius: 30px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-    ">📱 Открыть в AR</button>
-  </model-viewer>
-  <div class="footer">Крути пальцем • Нажми кнопку для AR</div>
+
+    <div class="card">
+        <header>Мой AR Проект (40 МБ)</header>
+        
+        <model-viewer 
+            src="https://docs.google.com/uc?export=download&id=1rrgizc4hACtr-5y6kvFy1ZZmdaEhPmNy" 
+            ar 
+            ar-modes="webxr scene-viewer quick-look" 
+            camera-controls 
+            touch-action="pan-y"
+            shadow-intensity="1" 
+            auto-rotate>
+            
+            <button slot="ar-button" id="ar-button">
+                Посмотреть в AR
+            </button>
+            
+        </model-viewer>
+    </div>
+
 </body>
 </html>
